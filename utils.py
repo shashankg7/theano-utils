@@ -6,6 +6,7 @@ import numpy as np
 
 def cost(y, y_pred, params, loss, reg=True):
     # reg is flag to indicate whether regularization is switched on or not
+    assert type(params) is list
     if loss == 'mse':
         cost  = T.mean((y - y_pred) ** 2)
         cost += [T.sum(param ** 2) for param in params]
