@@ -11,14 +11,25 @@ def relu(n_inp, n_out):
     raise NotImplmentedError
 
 
-def sigmoid(n_inp, n_out):
+def random(inp, out, seed=False):
+    if seed == True:
+        np.random.seed(42)
+    W = np.random.uniform(low=-0.1, high=0.1, size=(inp, out)).astype(np.float32)
+    return theano.shared(W, borrow=True)
+
+
+def sigmoid(n_inp, n_out, seed=False):
+    if seed == True:
+        np.random.seed(42)
     W = np.random.uniform(low = - 4 * np.sqrt(6.0/float(n_inp + n_out)), \
                           high = 4 * np.sqrt(6.0/float(n_inp + n_out)), \
                           size=(n_inp, n_out)).astype(np.float32)
     return theano.shared(W, borrow=True)
 
 
-def tanh(n_inp, n_out):
+def tanh(n_inp, n_out, seed=False):
+    if seed == True:
+        np.random.seed(42)
     W = np.random.uniform(low = - np.sqrt(6.0/float(n_inp + n_out)), \
                           high = np.sqrt(6.0/float(n_inp +n_out)), \
                           size=(n_inp, n_out)).astype(np.float32)
